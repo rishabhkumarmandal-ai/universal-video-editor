@@ -31,8 +31,11 @@ On another machine: Python 3.10+, Node 22+, FFmpeg/FFprobe, `pip install -r requ
 
 The agent uses the helper commands documented in the skill to analyze frames, transcribe, review wording, write a content-specific plan, build editable HTML/CSS/GSAP, render and verify. This is an agent workflow with deterministic utilities, not a one-command algorithm that guesses editorial meaning from audio.
 
-## Repository status
+## Repository and Skill Packages
 
-Local Git repository only. No remote repository is created and nothing is pushed or published. The reusable files exclude large private media by default. The approved full video remains at `stackvideo-edit/Stackvideo-BLUE-BLACK-GREY-FINAL.mp4`.
+- **Packaged Skill File:** [`universal-video-editor.skill`](universal-video-editor.skill) — installable archive bundle containing the complete skill engine, templates, and assets.
+- **Standalone Specification:** [`UNIVERSAL-VIDEO-EDITOR-SKILL.md`](UNIVERSAL-VIDEO-EDITOR-SKILL.md).
+- **Workspace Customization Root:** [`skills/universal-video-editor/`](skills/universal-video-editor/) (symlinked into [`.agents/skills/`](.agents/skills/)).
+- **GitHub Repository:** [https://github.com/rishabhkumarmandal-ai/universal-video-editor](https://github.com/rishabhkumarmandal-ai/universal-video-editor)
 
 Read `THIRD_PARTY_NOTICES.md` before redistributing assets. Reference contact sheets are private style evidence; no redistribution rights to their footage/creators are asserted.
