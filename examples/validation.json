@@ -1,0 +1,49 @@
+{
+  "skill_validation": "passed",
+  "helper_and_template_syntax": "passed",
+  "automatic_skill_discovery": "enabled; installed local symlink",
+  "media_integration": {
+    "source_analysis_frames": 120,
+    "output_frame_plan_rows": 120,
+    "raw_asr": "completed on local 4-second source; machine text remains a draft",
+    "reviewed_transcript_preserved": true,
+    "hyperframes_export": {
+      "duration": 4,
+      "frames": 120,
+      "dimensions": [
+        540,
+        960
+      ],
+      "decoded": true,
+      "actual_frames_visually_reviewed": true
+    }
+  },
+  "motion_components": {
+    "forms": [
+      "orbit",
+      "timeline",
+      "typing",
+      "counter",
+      "collage",
+      "diagram"
+    ],
+    "hyperframes_export_seconds": 12,
+    "frames": 360,
+    "lint_errors": 0,
+    "lint_warnings": 0,
+    "decoded": true,
+    "actual_frames_visually_reviewed": true,
+    "short_demo_closing_read_time_warning": "Expected in synthetic two-second stress-test scenes; actual edits need script-driven holds."
+  },
+  "silent_landscape_input": {
+    "dimensions": [
+      320,
+      180
+    ],
+    "fps": 24,
+    "frames_measured": 24,
+    "no_speech_invented": true
+  },
+  "original_media_and_approved_export": "retained unchanged",
+  "remote_publication": false
+}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=__WIDTH__,height=__HEIGHT__">
+<script src="gsap.min.js"></script>
+<style>
+@font-face{font-family:Poppins;src:url('Poppins-Bold.ttf');font-weight:700}
+*{box-sizing:border-box}html,body{margin:0;width:__WIDTH__px;height:__HEIGHT__px;overflow:hidden;background:#11151C;font-family:Poppins,sans-serif}
+#root{position:relative;width:100%;height:100%;overflow:hidden;color:#F5F7FA}
+#source{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:0}
+.scene{position:absolute;inset:0;z-index:10;background-color:var(--ground);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:72px 72px;color:var(--fg)}
+.scene-content{width:100%;height:100%;padding:14% 8% 28%;display:flex;flex-direction:column;gap:35px;justify-content:flex-start}
+.kicker{font-size:30px;color:var(--accent);letter-spacing:2px;text-transform:uppercase}.title{font-size:92px;line-height:1.12;letter-spacing:-3px;margin:0;max-width:100%;overflow-wrap:anywhere}
+.stage{isolation:isolate;position:relative;flex:1;min-height:360px;display:flex;align-items:center;justify-content:center;gap:35px}.nodes{display:flex;flex-wrap:wrap;gap:26px;width:100%;justify-content:center;align-items:center}
+.node{position:relative;z-index:1;background:var(--card);border:2px solid var(--border);border-radius:26px;padding:28px;min-width:190px;max-width:100%;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;flex:1}
+.node img.icon{width:85px;height:85px;object-fit:contain;filter:var(--icon-filter,none)}.node .label{font-size:43px;line-height:1.15;overflow-wrap:anywhere}.node .detail{font-size:25px;color:var(--muted);line-height:1.25}
+.collage .node{background:transparent;border:0;box-shadow:none}.collage .node:nth-child(odd){rotate:-5deg;translate:0 -24px}.collage .node:nth-child(even){rotate:4deg;translate:0 36px}
+.node img.art{width:100%;max-width:100%;max-height:340px;object-fit:contain;filter:drop-shadow(0 15px 20px #0003)}
+.checklist .nodes{flex-direction:column;align-items:stretch}.checklist .node{flex:none;flex-direction:row;justify-content:flex-start;text-align:left;min-height:146px}.checklist .label{flex:1}
+.diagram .nodes,.compare .nodes{flex-wrap:nowrap}.connector{position:absolute;left:0;top:50%;width:100%;height:4px;background:var(--accent);z-index:0;transform-origin:left}
+.orbit .stage{overflow:visible}.orbit .node{position:absolute;width:260px;min-width:0;flex:none}.orbit-path{position:absolute;width:78%;height:78%;border:2px solid var(--border);border-radius:50%}
+.timeline .nodes{flex-direction:column;align-items:stretch}.timeline .node{flex-direction:row;align-items:center;justify-content:space-between;flex:none;text-align:left;min-height:95px}.bar{height:42px;background:var(--accent);border-radius:8px;transform-origin:left;width:50%}.playhead{position:absolute;left:15%;top:0;bottom:0;width:4px;background:var(--fg)}
+.code{width:100%;background:#202734;border:2px solid #4B5C73;border-radius:24px;padding:35px;min-height:250px;align-self:center}.code-label{font-size:30px;color:#AEB9C9;margin-bottom:35px}.code pre{font-size:42px;white-space:pre-wrap;overflow-wrap:anywhere;color:#F5F7FA;margin:0}.cursor{color:#408CFF}.number{font-size:190px;line-height:1.05;color:var(--accent);font-variant-numeric:tabular-nums}.counter .node{position:relative;z-index:1;background:transparent;border:none}
+.overlay{position:absolute;z-index:20;display:flex;align-items:center;gap:28px;background:#11151C;border:2px solid #408CFF;border-radius:25px;padding:18px;color:#F5F7FA;overflow:hidden}
+.icon-tile{flex:none;background:#D3DFF0;opacity:1;border-radius:20px;display:flex;align-items:center;justify-content:center;width:112px;height:112px}.icon-tile img{width:72px;height:72px;object-fit:contain;filter:brightness(.68)}.overlay-label{font-size:54px;line-height:1.15;overflow-wrap:anywhere}.overlay-detail{font-size:28px;color:#CBD4E1;margin-top:12px}
+.caption{position:absolute;z-index:30;left:8%;width:84%;display:flex;justify-content:center;align-items:center;gap:20px;font-size:75px;font-weight:700;line-height:1.2;white-space:nowrap;color:#F5F7FA;paint-order:stroke fill;-webkit-text-stroke:5px #11151C}.caption span{display:inline-block}.caption.light{color:#202734;-webkit-text-stroke:0}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="__DURATION__" data-width="__WIDTH__" data-height="__HEIGHT__" data-fps="__FPS__">
+<video id="source" src="media/source-rec709.mp4" muted playsinline data-start="0" data-duration="__DURATION__" data-track-index="0"></video>
+<audio id="voice" src="media/voice.wav" data-start="0" data-duration="__DURATION__" data-track-index="1" data-volume="1"></audio>
+</div>
+<script>
+const CONFIG=__CONFIG_JSON__;
+const root=document.getElementById('root'),P=CONFIG.plan,C=CONFIG.style.palette;
+const tl=gsap.timeline({paused:true});
+const width=P.width,height=P.height,scale=width/1080;
+const esc=(s)=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const icon=(n)=>`icons/${encodeURIComponent(n||'list-checks')}.svg`;
+const timed=(el,start,end,track)=>{el.dataset.start=String(start);el.dataset.duration=String(end-start);el.dataset.trackIndex=String(track);};
+const enter=(target,at,i=0)=>tl.from(target,{opacity:0,...(i%3===0?{y:24*scale}:i%3===1?{x:-24*scale}:{scale:.9}),duration:.34,ease:['power3.out','sine.out','back.out(1.1)'][i%3]},at);
+// Build settled-state DOM first, then attach deterministic GSAP motion.
+P.scenes.filter(s=>s.kind!=='speaker').forEach((s,si)=>{
+ const el=document.createElement('section');el.className=`scene ${s.kind}`;el.id=`scene-${si}`;timed(el,s.start,s.end,2);
+ const dark=s.theme==='dark';const accent=dark?C.blue:C.blueText;
+ Object.entries({'--ground':dark?C.black:C.paper,'--fg':dark?C.white:C.ink,'--accent':accent,'--card':dark?'#202734':'#F5F7FA','--grid':dark?'#202734':'#DCE2EB','--border':dark?'#42516A':'#BCC9DA','--muted':dark?C.muted:'#58677D','--icon-filter':dark?'none':'brightness(.68)'}).forEach(([k,v])=>el.style.setProperty(k,v));
+ el.innerHTML=`<div class="scene-content"><div class="kicker">${esc(s.kicker||'')}</div><h1 class="title">${esc(s.title)}</h1><div class="stage"><div class="nodes"></div></div></div>`;
+ root.appendChild(el);const stage=el.querySelector('.stage'),nodes=el.querySelector('.nodes');
+ // Canvas-relative type and spacing; individual jobs can refine the editable HTML.
+ el.querySelector('.title').style.fontSize=`${92*scale}px`;el.querySelector('.kicker').style.fontSize=`${30*scale}px`;
+ enter(el.querySelector('.kicker'),s.start+.10,0);enter(el.querySelector('.title'),s.start+.16,1);
+ if(s.kind==='typing'){
+  nodes.remove();stage.innerHTML=`<div class="code"><div class="code-label">${esc(s.codeLabel||'ILLUSTRATIVE EDITOR')}</div><pre><span class="typed"></span><span class="cursor">▏</span></pre></div>`;
+  const code=s.code||'// your workflow';const text=stage.querySelector('.typed');text.textContent=code;
+  const state={n:0};tl.from(stage.querySelector('.code'),{y:30,opacity:0,duration:.4,ease:'power2.out'},s.start+.28);
+  tl.to(state,{n:code.length,duration:Math.max(.1,s.end-s.start-.8),ease:'none',onUpdate:()=>{text.textContent=code.slice(0,Math.floor(state.n));}},s.start+.45);
+  tl.to(stage.querySelector('.cursor'),{opacity:.15,duration:.25,yoyo:true,repeat:Math.max(0,Math.floor((s.end-s.start)/.5)-1)},s.start+.45);
+ }else{
+  (s.nodes||[]).forEach((n,i)=>{
+   const at=n.at??s.start+.25+i*.22;const node=document.createElement('div');node.className='node';
+   node.innerHTML=`${n.image?`<img class="art" src="${esc(n.image)}" alt="">`:`<img class="icon" src="${icon(n.icon)}" alt="">`}<div class="label">${esc(n.label)}</div>${n.detail?`<div class="detail">${esc(n.detail)}</div>`:''}`;
+   nodes.appendChild(node);node.querySelector('.label').style.fontSize=`${(s.kind==='orbit'?38:43)*scale}px`;
+   if(s.kind==='counter'){
+    node.innerHTML=`<div class="number">${esc(n.value??0)}</div><div class="label">${esc(n.label)}</div>`;
+    const num=node.querySelector('.number'),state={n:Number(n.from??0)};
+    num.textContent=String(n.value??0);tl.from(num,{scale:.9,opacity:0,duration:.3,ease:'back.out(1.1)'},at);
+    tl.to(state,{n:Number(n.value??0),duration:n.duration??.8,ease:'power2.out',onUpdate:()=>{num.textContent=String(Math.round(state.n))+(n.suffix||'');}},at);
+   }else if(s.kind==='timeline'){
+    const bar=document.createElement('div');bar.className='bar';bar.style.width=`${Math.max(10,Math.min(70,n.widthPercent??50))}%`;node.appendChild(bar);tl.from(bar,{scaleX:0,duration:.6,ease:'power3.out'},at+.1);
+   }
+   if(s.kind==='orbit')tl.from(node,{opacity:0,scale:.9,duration:.34,ease:'power3.out'},at);else enter(node,at,i);
+  });
+  if(['diagram','compare'].includes(s.kind)){
+   const conn=document.createElement('div');conn.className='connector';stage.appendChild(conn);tl.from(conn,{scaleX:0,duration:.6,ease:'power2.out'},s.start+.6);
+  }
+  if(s.kind==='orbit'){
+   nodes.style.display='contents';const path=document.createElement('div');path.className='orbit-path';stage.prepend(path);
+   const all=[...nodes.children],radius=Math.min(width*.29,height*.15),cy=stage.clientHeight/2,cx=stage.clientWidth/2;
+   all.forEach((node,i)=>{
+    const angle=-Math.PI/2+i*2*Math.PI/Math.max(1,all.length);node.style.left=`${cx-130*scale}px`;node.style.top=`${cy-120*scale}px`;
+    const at=(s.nodes[i].at??s.start+.25+i*.22),span=s.end-at-.25;
+    tl.set(node,{x:radius*Math.cos(angle),y:radius*Math.sin(angle)},s.start);
+    for(let j=0;j<12;j++){const a=angle+(j+1)*Math.PI/2/12;tl.to(node,{x:radius*Math.cos(a),y:radius*Math.sin(a),duration:Math.max(.01,span/12),ease:'none'},at+j*span/12);}
+   });enter(path,s.start+.15,2);
+  }
+  if(s.kind==='timeline'){
+   const play=document.createElement('div');play.className='playhead';stage.appendChild(play);tl.fromTo(play,{x:0},{x:width*.5,duration:Math.max(.1,s.end-s.start-.7),ease:'none'},s.start+.5);
+  }
+ }
+});
+(P.overlays||[]).forEach((o,i)=>{
+ const el=document.createElement('div');el.id=`overlay-${i}`;el.className='overlay';timed(el,o.start,o.end,3);
+ Object.assign(el.style,{left:`${o.x}px`,top:`${o.y}px`,width:`${o.width}px`,height:`${o.height}px`});
+ el.innerHTML=`<div class="icon-tile"><img src="${icon(o.icon)}" alt=""></div><div><div class="overlay-label">${esc(o.label)}</div>${o.detail?`<div class="overlay-detail">${esc(o.detail)}</div>`:''}</div>`;
+ root.appendChild(el);el.querySelector('.overlay-label').style.fontSize=`${(o.fontSize||54)*scale}px`;el.querySelector('.overlay-detail')?.style.setProperty('font-size',`${28*scale}px`);enter(el,o.start,i);
+});
+const keys=new Set(P.highlightWords||[]);
+CONFIG.captions.forEach((c,i)=>{
+ const light=P.scenes.some(s=>s.kind!=='speaker'&&s.theme!=='dark'&&s.start<=c.start&&c.start<s.end);
+ const el=document.createElement('div');el.id=`caption-${i}`;el.className='caption'+(light?' light':'');timed(el,c.start,c.end,4);
+ el.style.top=`${height*(P.caption_y??.73)}px`;el.style.fontSize=`${75*scale}px`;el.style.gap=`${20*scale}px`;
+ c.words.forEach(w=>{const span=document.createElement('span');span.textContent=w.text;el.appendChild(span);if(keys.has(w.text.replace(/[.,!?]/g,'').toLowerCase())){tl.to(span,{color:light?C.blueText:C.blue,duration:.03},w.start);tl.to(span,{color:light?C.ink:C.white,duration:.03},w.end);}});
+ root.appendChild(el);tl.from(el,{scale:.97,duration:.1,ease:'power2.out'},c.start);
+});
+window.__timelines=window.__timelines||{};window.__timelines.main=tl;
+</script>
+</body></html>

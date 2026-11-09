@@ -1,0 +1,11 @@
+{
+  "role": "Personal style baseline; do not reuse the story or timestamps for other sources",
+  "styleProfile": "../skills/universal-video-editor/assets/style.json",
+  "approvedContactSheet": "../skills/universal-video-editor/assets/reference-style/approved-blue-edit.jpg",
+  "uiReference": "../skills/universal-video-editor/assets/reference-style/clean-ui-reference.jpg",
+  "motionReference": "../skills/universal-video-editor/assets/reference-style/motion-collage-reference.jpg",
+  "localApprovedVideo": "../stackvideo-edit/Stackvideo-BLUE-BLACK-GREY-FINAL.mp4",
+  "localVideoIsPrivateAndNotInGit": true,
+  "approvedProperties": ["blue-black-grey", "opaque headshot panels", "solid icon tiles", "short Roman Hinglish captions", "word-matched visuals", "speaker/explanation alternation"],
+  "adaptForEverySource": ["transcript", "timing", "duration", "claims", "tool names", "CTA", "face and gesture geometry", "cutaway quantity"]
+}

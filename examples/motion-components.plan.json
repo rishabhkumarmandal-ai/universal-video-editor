@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "status": "ready",
+  "width": 540,
+  "height": 960,
+  "fps": "30/1",
+  "duration": 12.0,
+  "caption_y": 0.73,
+  "scenes": [
+    {
+      "id": "orbit",
+      "start": 0,
+      "end": 2,
+      "kind": "orbit",
+      "theme": "dark",
+      "title": "WORKFLOW",
+      "nodes": [
+        {
+          "label": "Editor",
+          "icon": "code-xml",
+          "at": 0.15
+        },
+        {
+          "label": "Terminal",
+          "icon": "terminal",
+          "at": 0.3
+        },
+        {
+          "label": "Browser",
+          "icon": "globe",
+          "at": 0.44999999999999996
+        }
+      ]
+    },
+    {
+      "id": "timeline",
+      "start": 2,
+      "end": 4,
+      "kind": "timeline",
+      "theme": "light",
+      "title": "TIMELINE DEMO",
+      "nodes": [
+        {
+          "label": "Cut",
+          "icon": "files",
+          "widthPercent": 35,
+          "at": 2.15
+        },
+        {
+          "label": "Sound",
+          "icon": "files",
+          "widthPercent": 55,
+          "at": 2.27
+        },
+        {
+          "label": "Timing",
+          "icon": "files",
+          "widthPercent": 45,
+          "at": 2.3899999999999997
+        }
+      ]
+    },
+    {
+      "id": "typing",
+      "start": 4,
+      "end": 6,
+      "kind": "typing",
+      "theme": "dark",
+      "title": "TYPING DEMO",
+      "code": "// editable workflow"
+    },
+    {
+      "id": "counter",
+      "start": 6,
+      "end": 8,
+      "kind": "counter",
+      "theme": "light",
+      "title": "LIST DEMO",
+      "nodes": [
+        {
+          "label": "Example items",
+          "value": 3,
+          "at": 6.25
+        }
+      ]
+    },
+    {
+      "id": "collage",
+      "start": 8,
+      "end": 10,
+      "kind": "collage",
+      "theme": "light",
+      "title": "COLLAGE DEMO",
+      "nodes": [
+        {
+          "label": "Calendar",
+          "image": "icons/calendar-days.svg",
+          "at": 8.2
+        },
+        {
+          "label": "Checklist",
+          "image": "icons/list-checks.svg",
+          "at": 8.4
+        }
+      ]
+    },
+    {
+      "id": "diagram",
+      "start": 10,
+      "end": 12,
+      "kind": "diagram",
+      "theme": "dark",
+      "title": "FLOW DEMO",
+      "nodes": [
+        {
+          "label": "Input",
+          "icon": "folder",
+          "at": 10.2
+        },
+        {
+          "label": "Output",
+          "icon": "check",
+          "at": 10.6
+        }
+      ]
+    }
+  ],
+  "overlays": [],
+  "highlightWords": [],
+  "summary": "Synthetic two-second component timing stress test; use script-driven read time in real edits, especially the closing hold."
+}

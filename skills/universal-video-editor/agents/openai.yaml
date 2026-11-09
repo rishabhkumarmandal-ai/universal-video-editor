@@ -1,0 +1,6 @@
+interface:
+  display_name: "Universal Video Editor"
+  short_description: "Transcribe, plan and edit videos in your approved style"
+  default_prompt: "Use $universal-video-editor to analyze this video, give me the transcript and edit plan, then render the finished edit."
+policy:
+  allow_implicit_invocation: true

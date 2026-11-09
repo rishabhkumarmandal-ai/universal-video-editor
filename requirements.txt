@@ -1,0 +1,5 @@
+# CLI helpers; ASR is optional until transcription is requested.
+numpy>=1.26,<3
+Pillow>=10,<13
+av>=12,<18
+faster-whisper>=1.1,<2

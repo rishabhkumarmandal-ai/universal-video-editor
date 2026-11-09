@@ -1,0 +1,30 @@
+# Private projects and legacy history remain on disk, outside the reusable repository.
+/.editing-tools/
+/local-edit/
+/blue-grey-edit/
+/stackvideo-edit/
+/reference-videos/
+/jobs/
+/.test-runs/
+/node_modules/
+*.mov
+*.mp4
+*.mkv
+*.webm
+*.wav
+*.m4a
+*.mp3
+*.npz
+*.onnx
+*.skill
+!universal-video-editor.skill
+!video-editor.skill
+*.srt
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.DS_Store
+/README-source.md
+/GitHub Repo Tutorial Storyboard.png

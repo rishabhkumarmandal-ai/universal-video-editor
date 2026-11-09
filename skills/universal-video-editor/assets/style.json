@@ -1,0 +1,10 @@
+{
+  "name": "approved-blue-black-grey",
+  "palette": {"blue":"#408CFF","blueText":"#205AB0","black":"#11151C","paper":"#E9EDF3","ink":"#202734","muted":"#AEB9C9","white":"#F5F7FA","tile":"#D3DFF0"},
+  "font": "Poppins",
+  "captions": {"maxWords":3,"sizeRelativeToWidth":0.0694,"yRelativeToHeight":0.73},
+  "panels": {"opacity":1,"iconTileOpacity":1},
+  "camera": {"zoom":false,"creativeGrade":false},
+  "motion": {"entranceSeconds":0.34,"travelRelativeToWidth":0.022},
+  "workflow": {"default":"transcribe-plan-edit","engine":"hyperframes","askForRoutineApproval":false}
+}

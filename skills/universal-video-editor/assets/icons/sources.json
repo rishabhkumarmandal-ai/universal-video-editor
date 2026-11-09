@@ -1,0 +1,118 @@
+[
+  {
+    "asset": "calendar-days.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/calendar-days.svg"
+  },
+  {
+    "asset": "brain-circuit.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/brain-circuit.svg"
+  },
+  {
+    "asset": "server.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/server.svg"
+  },
+  {
+    "asset": "database.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/database.svg"
+  },
+  {
+    "asset": "code-xml.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/code-xml.svg"
+  },
+  {
+    "asset": "terminal.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/terminal.svg"
+  },
+  {
+    "asset": "monitor.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/monitor.svg"
+  },
+  {
+    "asset": "globe.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/globe.svg"
+  },
+  {
+    "asset": "list-checks.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/list-checks.svg"
+  },
+  {
+    "asset": "book-open.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/book-open.svg"
+  },
+  {
+    "asset": "check.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/check.svg"
+  },
+  {
+    "asset": "copy.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/copy.svg"
+  },
+  {
+    "asset": "cloud-upload.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/cloud-upload.svg"
+  },
+  {
+    "asset": "folder.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/folder.svg"
+  },
+  {
+    "asset": "message-circle.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/message-circle.svg"
+  },
+  {
+    "asset": "bookmark.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/bookmark.svg"
+  },
+  {
+    "asset": "files.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/files.svg"
+  },
+  {
+    "asset": "arrow-right.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/arrow-right.svg"
+  },
+  {
+    "asset": "shield-check.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/shield-check.svg"
+  },
+  {
+    "asset": "mouse-pointer-2.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/mouse-pointer-2.svg"
+  },
+  {
+    "asset": "sparkles.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/sparkles.svg"
+  },
+  {
+    "asset": "hard-drive.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/hard-drive.svg"
+  },
+  {
+    "asset": "circle-check.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/circle-check.svg"
+  },
+  {
+    "asset": "braces.svg",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/braces.svg"
+  },
+  {
+    "asset": "nextdotjs.svg",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/nextdotjs.svg"
+  },
+  {
+    "asset": "supabase.svg",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/supabase.svg"
+  },
+  {
+    "asset": "vercel.svg",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/vercel.svg"
+  },
+  {
+    "asset": "cloudflare.svg",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/cloudflare.svg"
+  },
+  {
+    "asset": "claude.svg",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/claude.svg"
+  }
+]
